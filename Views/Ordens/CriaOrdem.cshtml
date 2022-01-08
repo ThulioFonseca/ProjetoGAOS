@@ -1,0 +1,103 @@
+
+    @model ProjetoGAOS.Models.OrdemDeServico;
+    
+    @{
+
+        Layout="_Layout";
+    }
+
+
+<div class="container flex-column justfy-content-center bg-light p-5 h-100">
+
+    <div class="d-flex justify-content-center">
+        <h1 class="text-dark">Criar Ordem de Serviço</h1>
+    </div>
+
+    <form method="post" action="/Ordens/CriaOrdem" class="row g-3 mt-4">
+        <input type="hidden" name="id" id="id" value="@Model.Id">
+        <div class="col-md-6">
+            <label for="txtModelo">Modelo do Dispositivo:</label><br>
+            <input type="text" class="form-control" name="Modelo" id="txtModelo" placeholder="Ex: Galaxy A10" value="">
+        </div>
+        <div class="col-md-6">
+            <label for="txtFabricante">Fabricante:</label><br>
+            <input type="text" class="form-control" name="Fabricante" id="txtFabricante"  placeholder="Ex: Samsung">
+        </div>
+        <div class="col-6">
+            <label for="txtIdentificador">Identificador:</label><br>
+            <input type="text" class="form-control" name="Identificador" id="txtIdentificador" placeholder="Ex: 12345678910" value="@Model.Identificador">
+        </div>
+        <div class="col-6">
+            <label for="txtProprietario">Proprietário:</label><br>
+            <input type="text" class="form-control" name="Cliente" id="txtProprietario" value="@Model.Cliente">
+        </div>
+        <div class="col-md-6">
+            <label for="txtMotivo">Motivo da Manutenção:</label><br>
+            <textarea class="form-control" id="txtMotivo" rows="3"></textarea>
+        </div>
+        <div class="col-md-3">
+            <label for="txtCategoria">Categoria:</label><br>
+             <select id="txtCategoria" class="form-select">
+                <option selected>Selecione...</option>
+                <option>...</option>
+            </select>
+        </div>
+        <div class="col-md-3">
+            <label for="txtData">Data de entrada:</label><br>
+            <input type="date" class="form-control" name="Data" id="txtData" value="@Model.Data">
+        </div>
+
+        <div class="d-flex flex-row justify-content-center m-3 ">
+        <button class="btn btn-outline-success btn-lg me-4" type="submit">Salvar</button>
+        <a class="btn btn-outline-danger btn-lg" href="/Home/Index" type="reset">Cancelar</a>           
+        </div >
+        
+           
+    </form>
+
+    
+
+
+
+
+<!--
+        <div class="d-flex justify-content-center ">
+            <h1 class="text-dark">Criar nova Ordem de Serviço</h1>
+        </div>
+        <div class="d-flex justify-content-center mt-4">
+            <form method="post" class="w-25 fs-5 ">
+                <div>
+                    <label for="txtModelo">Modelo do Dispositivo:</label><br>
+                    <input type="text" class="form-control" name="Modelo" id="txtModelo" placeholder="Ex: Galaxy A10">
+                </div>
+                <div>
+                    <label for="txtFabricante">Fabricante:</label><br>
+                    <input type="text" class="form-control" name="Fabricante" id="txtFabricante"  placeholder="Ex: Samsung">
+                </div>
+                <div>
+                    <label for="txtIdentificador">Identificador:</label><br>
+                    <input type="text" class="form-control" name="Identificador" id="txtIdentificador" placeholder="Ex: 12345678910">
+                </div>
+                <div>
+                    <label for="txtCategoria">Categoria:</label><br>
+                    <input type="text" class="form-control" name="Categoria" id="txtCategoria" placeholder="Smartphone" >
+                </div>
+                <div>
+                    <label for="txtProprietario">Proprietário:</label><br>
+                    <input type="text" class="form-control" name="Proprietario" id="txtProprietario">
+                </div>
+                <div>
+                    <label for="txtData">Data de entrada:</label><br>
+                    <input type="text" class="form-control" name="Data" id="txtData">
+                </div>
+                <div>
+                    <label for="txtMotivo">Motivo da Manutenção:</label><br>
+                    <input type="text" class="form-control" name="Motivo" id="txtMotivo">
+                </div>
+                <div class="d-flex flex-row justify-content-center m-3 ">
+                    <button class="btn btn-outline-success btn-lg me-4" type="submit">Criar</button>
+                    <a class="btn btn-outline-danger btn-lg" href="/Home/Index" type="reset">Cancelar</a>           
+                    </div >
+            </form>
+     </div>-->
+</div>

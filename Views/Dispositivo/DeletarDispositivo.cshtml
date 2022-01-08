@@ -1,0 +1,22 @@
+   
+@model ProjetoGAOS.Models.Dispositivo;
+
+    @{
+
+        Layout="_Layout";
+    }
+    <div class="container flex-column bg-light p-5 h-100">
+        
+        <div class="">
+            <h1 class="text-black fw-bold"> Excluir Dispositivo</h1>
+            <hr>
+            <h4 class="text-secondary fw-light">Deseja realmente excluir <span class="text-primary fst-italic">@Model.Identificador</span>?</h4>
+            <form method="post" action="/Dispositivo/DeletarDispositivo" class="w-25">
+                        <input type="hidden" name="id" id="Identificador" value="@Model.Identificador">
+                        <div class="mt-5">
+                             <a class="btn btn-outline-success btn-lg" href="/Dispositivo/ListaDispositivos" type="reset">Cancelar</a>
+                              <button class="btn btn-outline-danger btn-lg mx-3"  type="submit">Excluir</button>
+                        </div>
+            </form>
+        </div>
+    </div>

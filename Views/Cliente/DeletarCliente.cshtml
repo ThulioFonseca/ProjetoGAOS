@@ -1,0 +1,22 @@
+   
+@model ProjetoGAOS.Models.Cliente;
+
+    @{
+
+        Layout="_Layout";
+    }
+    <div class="container flex-column bg-light p-5 h-100">
+        
+        <div class="">
+            <h1 class="text-black fw-bold"> Excluir Cliente</h1>
+            <hr>
+            <h4 class="text-secondary fw-light">Deseja realmente excluir <span class="text-primary fst-italic">@Model.Nome</span>?</h4>
+            <form method="post" action="/Cliente/DeletarCliente" class="w-25">
+                        <input type="hidden" name="id" id="Cpf" value="@Model.Cpf">
+                        <div class="mt-5">
+                             <a class="btn btn-outline-success btn-lg" href="/Cliente/ListaClientes" type="reset">Cancelar</a>
+                              <button class="btn btn-outline-danger btn-lg mx-3"  type="submit">Excluir</button>
+                        </div>
+            </form>
+        </div>
+    </div>

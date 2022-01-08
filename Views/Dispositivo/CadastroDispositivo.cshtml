@@ -1,0 +1,61 @@
+
+   
+@model ProjetoGAOS.Models.Dispositivo;
+
+    @{
+
+        Layout="_Layout";
+    }
+    
+
+
+<div class="container flex-column bg-light p-5 h-100">
+
+        <div class="d-flex justify-content-center">
+            <h1 class="text-dark">Cadastro de Dispositivos</h1>
+        </div>
+        <div class="d-flex justify-content-center mt-4">
+            <form method="post" action="/Dispositivo/CadastroDispositivo" class="w-50 fs-6 row g-3 ">
+            <input type="hidden" name="id" id="Identificador" value="@Model.Identificador">
+                <div>
+                    <label for="txtModelo">Modelo:</label><br>
+                    <input type="text" class="form-control" name="Modelo" id="txtModelo" value="@Model.Modelo">
+                </div>
+                <div>
+                    <label for="txtFabricante">Fabricante:</label><br>
+                    <input type="text" class="form-control" name="Fabricante" id="txtFabricante"  placeholder="Apple" value="@Model.Fabricante">
+                </div>
+                <div>
+                    <label for="txtIdentificador">Identificador:</label><br>
+                    @{
+                            if(Context.Request.RouteValues.ContainsKey("id")) {
+
+                                <input type="text" class="form-control" name="Identificador" id="Identificador" placeholder="12345678910" value="@Model.Identificador" readonly>
+                            }  else {
+
+                                <input type="text" class="form-control" name="Identificador" id="Identificador" placeholder="12345678910" value="@Model.Identificador">
+                            }                 
+                    }
+                    
+                </div>
+                <div>
+                    <label for="txtCatergoria">Categoria:</label><br>
+                    <input type="text" class="form-control" name="Categoria" id="txtCategoria" value="@Model.Categoria">
+                </div>
+                <div class="d-flex flex-row justify-content-center m-3 ">
+                    <button class="btn btn-outline-success btn-lg me-4"  type="submit">Salvar</button>
+                    @{
+                        if(Context.Request.RouteValues.ContainsKey("id")){
+                            
+                            <a class="btn btn-outline-danger btn-lg" href="/Dispositivo/ListaDispositivos" type="reset">Cancelar</a> 
+
+                        } else{
+
+                            <a class="btn btn-outline-danger btn-lg" href="/Home/Index" type="reset">Cancelar</a> 
+                        }
+                    }
+
+                    </div >
+            </form>
+     </div>
+</div>
