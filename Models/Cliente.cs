@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 #nullable disable
 
@@ -8,6 +9,7 @@ namespace ProjetoGAOS.Models
     {
         public Cliente()
         {
+            Dispositivos = new HashSet<Dispositivo>();
             OrdemDeServicos = new HashSet<OrdemDeServico>();
         }
 
@@ -16,6 +18,7 @@ namespace ProjetoGAOS.Models
         public string Email { get; set; }
         public string Telefone { get; set; }
 
+        public virtual ICollection<Dispositivo> Dispositivos { get; set; }
         public virtual ICollection<OrdemDeServico> OrdemDeServicos { get; set; }
     }
 }

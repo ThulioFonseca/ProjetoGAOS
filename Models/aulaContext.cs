@@ -26,8 +26,7 @@ namespace ProjetoGAOS.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                /*#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.*/
-                optionsBuilder.UseNpgsql("DBconnetionsString");
+                optionsBuilder.UseNpgsql("Host=200.18.128.54;Database=aula;Username=aula;Password=aula");
             }
         }
 
@@ -64,6 +63,8 @@ namespace ProjetoGAOS.Models
 
                 entity.ToTable("dispositivo", "thuliofonseca");
 
+                entity.HasIndex(e => e.Proprietario, "fki_dispositivo_cliente_fkey");
+
                 entity.Property(e => e.Identificador)
                     .HasMaxLength(50)
                     .HasColumnName("identificador");
@@ -79,6 +80,13 @@ namespace ProjetoGAOS.Models
                 entity.Property(e => e.Modelo)
                     .HasMaxLength(100)
                     .HasColumnName("modelo");
+
+                entity.Property(e => e.Proprietario).HasMaxLength(100);
+
+                entity.HasOne(d => d.ProprietarioNavigation)
+                    .WithMany(p => p.Dispositivos)
+                    .HasForeignKey(d => d.Proprietario)
+                    .HasConstraintName("dispositivo_cliente_fkey");
             });
 
             modelBuilder.Entity<OrdemDeServico>(entity =>

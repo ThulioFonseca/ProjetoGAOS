@@ -1,6 +1,9 @@
 
    
 @model ProjetoGAOS.Models.Dispositivo;
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+}
 
     @{
 
@@ -37,6 +40,10 @@
                             }                 
                     }
                     
+                </div>
+                <div>
+                    <label for="txtProprietario">Proprietario:</label><br>
+                    <select  class="form-control" asp-for ="@Model.Proprietario" asp-items="@ViewBag.Options"></select>
                 </div>
                 <div>
                     <label for="txtCatergoria">Categoria:</label><br>

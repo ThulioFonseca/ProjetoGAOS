@@ -1,7 +1,9 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using ProjetoGAOS.Models;
@@ -24,15 +26,18 @@ namespace ProjetoGAOS.Controllers
 
         public async Task<IActionResult> ListaDispositivos()
         {
-
+            ViewBag.ListaProps = await _context.Clientes.OrderBy(x => x.Nome).AsNoTracking().ToListAsync();
             return View(await _context.Dispositivos.OrderBy(x=>x.Fabricante).AsNoTracking().ToListAsync());
-
-
+           
         }
+
 
         [HttpGet]
         public async Task<IActionResult> CadastroDispositivo(int? id)
         {
+            var proprietarios = _context.Clientes.OrderBy(x => x.Nome).AsNoTracking().ToList();
+            var proprietariosSelectList = new SelectList(proprietarios, nameof(Cliente.Cpf), nameof(Cliente.Nome));
+            ViewBag.Options = proprietariosSelectList;
 
             if (id.HasValue)
             {

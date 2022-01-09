@@ -1,5 +1,6 @@
 
     @model ProjetoGAOS.Models.OrdemDeServico;
+    @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
     
     @{
 
@@ -14,33 +15,33 @@
     </div>
 
     <form method="post" action="/Ordens/CriaOrdem" class="row g-3 mt-4">
-        <input type="hidden" name="id" id="id" value="@Model.Id">
+        <input type="hidden" name="id" id="id" value="@Model.Id" >
+        <div class="col-6">
+            <label for="txtIdentificador">Identificador:</label><br>
+            <select class="form-control" asp-for ="@Model.Identificador" asp-items="@ViewBag.AllDispositivos"></select>
+        </div>
         <div class="col-md-6">
             <label for="txtModelo">Modelo do Dispositivo:</label><br>
-            <input type="text" class="form-control" name="Modelo" id="txtModelo" placeholder="Ex: Galaxy A10" value="">
+            <input type="text" class="form-control" name="Modelo" id="txtModelo" placeholder="Ex: Galaxy A10" value="@ViewBag.AllDispositivos"  readonly>
         </div>
         <div class="col-md-6">
             <label for="txtFabricante">Fabricante:</label><br>
-            <input type="text" class="form-control" name="Fabricante" id="txtFabricante"  placeholder="Ex: Samsung">
+            <input type="text" class="form-control" name="Fabricante" id="txtFabricante"  placeholder="Ex: Samsung"  readonly>
         </div>
-        <div class="col-6">
-            <label for="txtIdentificador">Identificador:</label><br>
-            <input type="text" class="form-control" name="Identificador" id="txtIdentificador" placeholder="Ex: 12345678910" value="@Model.Identificador">
+        <div class="col-md-6">
+            <label for="txtModelo">Cliente:</label><br>
+            <input  class="form-control" asp-for="@Model.Cliente" value="@ViewBag.AllClients"  readonly>
         </div>
-        <div class="col-6">
-            <label for="txtProprietario">Proprietário:</label><br>
-            <input type="text" class="form-control" name="Cliente" id="txtProprietario" value="@Model.Cliente">
-        </div>
+        
+       
         <div class="col-md-6">
             <label for="txtMotivo">Motivo da Manutenção:</label><br>
             <textarea class="form-control" id="txtMotivo" rows="3"></textarea>
         </div>
         <div class="col-md-3">
             <label for="txtCategoria">Categoria:</label><br>
-             <select id="txtCategoria" class="form-select">
-                <option selected>Selecione...</option>
-                <option>...</option>
-            </select>
+             <input id="txtCategoria" class="form-select"  readonly>
+               
         </div>
         <div class="col-md-3">
             <label for="txtData">Data de entrada:</label><br>

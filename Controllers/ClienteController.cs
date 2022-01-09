@@ -24,7 +24,7 @@ namespace ProjetoGAOS.Controllers
 
         public async Task<IActionResult> ListaClientes()
         {
-
+            
             return View(await _context.Clientes.OrderBy(x=>x.Nome).AsNoTracking().ToListAsync());
 
 

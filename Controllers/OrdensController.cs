@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using ProjetoGAOS.Models;
@@ -34,6 +35,12 @@ namespace ProjetoGAOS.Controllers
         [HttpGet]
         public async Task<IActionResult> CriaOrdem(int? id)
         {
+
+            var DispositivoIds = _context.Dispositivos.OrderBy(x => x.Modelo).AsNoTracking().ToList();
+            var DispositivoSelectList = new SelectList(DispositivoIds, nameof(Dispositivo.Identificador), nameof(Dispositivo.Modelo));
+            var ClienteList = new SelectList(DispositivoIds, nameof(Dispositivo.Proprietario), nameof(Dispositivo.Proprietario));
+            ViewBag.AllDispositivos = DispositivoSelectList;
+            ViewBag.AllClientes = ClienteList ;
 
             if (id.HasValue)
             {
@@ -80,40 +87,7 @@ namespace ProjetoGAOS.Controllers
 
         }
 
-      /*  [HttpGet]
-
-        public async Task<IActionResult> DeletarCliente(int? id)
-        {
-
-            var cliente = await _context.OrdemDeServicos.FindAsync(id.ToString());
-
-            return View(cliente);
-
-
-        }
-
-        [HttpPost]
-
-        public async Task<IActionResult> DeletarCliente(int id)
-        {
-
-            var cliente = await _context.Clientes.FindAsync(id.ToString());
-            if (cliente != null)
-            {
-
-                _context.Remove(cliente);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(ListaClientes));
-
-
-            }
-
-            return RedirectToAction("Index", "Home");
-
-        }*/
-
-
-    }
+      }
 
 
 
