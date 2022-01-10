@@ -15,11 +15,14 @@
     
         <thead>
             <tr class="text-center">
-                <th>Cliente</th>
+                
                 <th>ID</th>
+                <th>Cliente</th>
                 <th>Data</th>
-                <th>Identificador</th>
-                <th>aparelho</th>
+                <th>IMEI</th>
+                <th>Dispositivo</th>
+                <th>Orçamento</th>
+                <th>Status</th>
                 <th class="px-5" >Ações</th>
             </tr>
         </thead>
@@ -29,14 +32,17 @@
             {
                 <tr class="align-middle text-center ">
     
-                    <td class="fw-bold"></td>
+                    
                     <td>@ordemDeServico.Id</td>
+                    <td>@ordemDeServico.Cliente</td>
                     <td>@ordemDeServico.Data</td>
                     <td>@ordemDeServico.Identificador</td>
-                    <td>@ordemDeServico.</td>
+                    <td>Modelo do Aparelho</td>
+                    <td>R$0,00</td>
+                    <td>Aberta</td>
                     <td class="d-flex flex-row justify-content-center px-5">
-                        <a class="btn btn-outline-danger  btn-lg me-4" href=""type="reset">Excluir</a>
-                        <a class="btn btn-outline-primary btn-lg me-1" href="/Ordens/CriaOrdem/@ordemDeServico.Id" type="button">Alterar</a>
+                        
+                        <a class="btn btn-outline-primary btn-lg me-1" href="/Ordens/CriaOrdem/@ordemDeServico.Id" type="button">Alterar Status</a>
                     </td>
                 </tr>
     

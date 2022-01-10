@@ -22,21 +22,21 @@
             <input type="hidden" name="id" id="Identificador" value="@Model.Identificador">
                 <div>
                     <label for="txtModelo">Modelo:</label><br>
-                    <input type="text" class="form-control" name="Modelo" id="txtModelo" value="@Model.Modelo">
+                    <input type="text" class="form-control" name="Modelo" id="txtModelo" value="@Model.Modelo" placeholder="Ex: Iphone XR">
                 </div>
                 <div>
                     <label for="txtFabricante">Fabricante:</label><br>
-                    <input type="text" class="form-control" name="Fabricante" id="txtFabricante"  placeholder="Apple" value="@Model.Fabricante">
+                    <input type="text" class="form-control" name="Fabricante" id="txtFabricante"  placeholder=" Ex: Apple" value="@Model.Fabricante">
                 </div>
                 <div>
-                    <label for="txtIdentificador">Identificador:</label><br>
+                    <label for="txtIdentificador">IMEI:</label><br>
                     @{
                             if(Context.Request.RouteValues.ContainsKey("id")) {
 
-                                <input type="text" class="form-control" name="Identificador" id="Identificador" placeholder="12345678910" value="@Model.Identificador" readonly>
+                                <input type="text" class="form-control" name="Identificador" id="Identificador" placeholder="Ex: 12345678910" value="@Model.Identificador" readonly>
                             }  else {
 
-                                <input type="text" class="form-control" name="Identificador" id="Identificador" placeholder="12345678910" value="@Model.Identificador">
+                                <input type="text" class="form-control" name="Identificador" id="Identificador" placeholder="Ex: 12345678910" value="@Model.Identificador">
                             }                 
                     }
                     
@@ -47,7 +47,13 @@
                 </div>
                 <div>
                     <label for="txtCatergoria">Categoria:</label><br>
-                    <input type="text" class="form-control" name="Categoria" id="txtCategoria" value="@Model.Categoria">
+                    <select class="form-control" name="Categoria" id="txtCategoria" value="@Model.Categoria">
+
+                        <option value="Smartphone">Smartphone</option>
+                        <option value="Tablet">Tablet</option>
+                        <option value="Outros">Outros</option>
+
+                    </select>    
                 </div>
                 <div class="d-flex flex-row justify-content-center m-3 ">
                     <button class="btn btn-outline-success btn-lg me-4"  type="submit">Salvar</button>

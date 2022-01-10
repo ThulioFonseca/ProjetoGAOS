@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -36,11 +37,34 @@ namespace ProjetoGAOS.Controllers
         public async Task<IActionResult> CriaOrdem(int? id)
         {
 
+            List<String> Nomes = new List<string>();
             var DispositivoIds = _context.Dispositivos.OrderBy(x => x.Modelo).AsNoTracking().ToList();
-            var DispositivoSelectList = new SelectList(DispositivoIds, nameof(Dispositivo.Identificador), nameof(Dispositivo.Modelo));
-            var ClienteList = new SelectList(DispositivoIds, nameof(Dispositivo.Proprietario), nameof(Dispositivo.Proprietario));
+            foreach (var Dispositivo in DispositivoIds){
+
+                Nomes.Add(Dispositivo.Fabricante.ToString());
+
+            }
+
+            var listaNomes = new SelectList(Nomes);
+
+            var DispositivoSelectList = new SelectList((from Dispositivo in _context.Dispositivos.OrderBy(x => x.Modelo).AsNoTracking().ToList()
+
+                                                       select new
+                                                       {
+
+                                                           id = Dispositivo.Identificador,
+                                                           ModeloNome = Dispositivo.Fabricante + " " + Dispositivo.Modelo }),
+                                                           "id", 
+                                                           "ModeloNome"
+                                                           
+                                                           );
+
+
+
+
             ViewBag.AllDispositivos = DispositivoSelectList;
-            ViewBag.AllClientes = ClienteList ;
+            ViewBag.AllClientes = listaNomes;
+            //DispositivoIds[0].Proprietario.ToString()
 
             if (id.HasValue)
             {
