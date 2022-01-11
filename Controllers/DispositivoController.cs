@@ -26,7 +26,7 @@ namespace ProjetoGAOS.Controllers
 
         public async Task<IActionResult> ListaDispositivos()
         {
-            ///ViewBag.ListaProps = await _context.Clientes.OrderBy(x => x.Nome).AsNoTracking().ToListAsync();
+            
             return View(await _context.Dispositivos.OrderBy(x=>x.Fabricante).AsNoTracking().ToListAsync());
            
         }

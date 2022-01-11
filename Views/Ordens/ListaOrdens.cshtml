@@ -17,6 +17,7 @@
             <tr class="text-center">
                 
                 <th>ID</th>
+                <th>Tipo</th>
                 <th>Cliente</th>
                 <th>Data</th>
                 <th>IMEI</th>
@@ -34,12 +35,13 @@
     
                     
                     <td>@ordemDeServico.Id</td>
+                    <td>@ordemDeServico.Tipo</td>
                     <td>@ordemDeServico.Cliente</td>
                     <td>@ordemDeServico.Data</td>
                     <td>@ordemDeServico.Identificador</td>
                     <td>Modelo do Aparelho</td>
-                    <td>R$0,00</td>
-                    <td>Aberta</td>
+                    <td>@ordemDeServico.Orcamento</td>
+                    <td>@ordemDeServico.Status</td>
                     <td class="d-flex flex-row justify-content-center px-5">
                         
                         <a class="btn btn-outline-primary btn-lg me-1" href="/Ordens/CriaOrdem/@ordemDeServico.Id" type="button">Alterar Status</a>

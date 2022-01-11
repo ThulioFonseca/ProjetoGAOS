@@ -114,6 +114,14 @@ namespace ProjetoGAOS.Models
                 entity.Property(e => e.Status)
                     .HasMaxLength(50)
                     .HasColumnName("status");
+                
+                entity.Property(e => e.Tipo)
+                    .HasMaxLength(50)
+                    .HasColumnName("tipo");
+
+                entity.Property(e => e.Motivo)
+                    //.HasMaxLength(50)
+                    .HasColumnName("motivo");
 
                 entity.HasOne(d => d.ClienteNavigation)
                     .WithMany(p => p.OrdemDeServicos)

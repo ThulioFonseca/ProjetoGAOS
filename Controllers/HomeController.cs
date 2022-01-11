@@ -9,12 +9,8 @@ namespace ProjetoGAOS.Controllers
 
             return View();
 
-           // return View();
+          
         }
-       /* public IActionResult CadastroOrdemServico(){
-
-            //return View("Ordens");
-            
-        }*/
+       
     }
 }

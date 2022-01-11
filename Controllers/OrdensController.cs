@@ -28,7 +28,7 @@ namespace ProjetoGAOS.Controllers
         public async Task<IActionResult> ListaOrdens()
         {
 
-            return View(await _context.OrdemDeServicos .AsNoTracking().ToListAsync());
+            return View(await _context.OrdemDeServicos.OrderBy(x => x.Id).AsNoTracking().ToListAsync());
 
 
         }
@@ -37,34 +37,34 @@ namespace ProjetoGAOS.Controllers
         public async Task<IActionResult> CriaOrdem(int? id)
         {
 
-            List<String> Nomes = new List<string>();
-            var DispositivoIds = _context.Dispositivos.OrderBy(x => x.Modelo).AsNoTracking().ToList();
-            foreach (var Dispositivo in DispositivoIds){
 
-                Nomes.Add(Dispositivo.Fabricante.ToString());
+            var DispositivoSelectList = new SelectList(from Dispositivo in _context.Dispositivos.OrderBy(x=>x.Fabricante) join Cliente in _context.Clientes on Dispositivo.Proprietario equals Cliente.Cpf 
+ 
+                                        select new
+                                        {
+                                            id = Dispositivo.Identificador,
+                                            FabricanteModelo = Dispositivo.Fabricante + " - " + Dispositivo.Modelo + " ------- " + Cliente.Nome},                                                           
 
-            }
+                                            "id",
+                                            "FabricanteModelo"
 
-            var listaNomes = new SelectList(Nomes);
+                                            );
 
-            var DispositivoSelectList = new SelectList((from Dispositivo in _context.Dispositivos.OrderBy(x => x.Modelo).AsNoTracking().ToList()
+             var ClienteSelectList = new SelectList(from Cliente in _context.Clientes.OrderBy(x => x.Nome).AsNoTracking().ToList()
 
-                                                       select new
-                                                       {
+                                        select new
+                                        {
+                                            cpf = Cliente.Cpf,
+                                            nome = Cliente.Nome},                                                           
 
-                                                           id = Dispositivo.Identificador,
-                                                           ModeloNome = Dispositivo.Fabricante + " " + Dispositivo.Modelo }),
-                                                           "id", 
-                                                           "ModeloNome"
-                                                           
-                                                           );
+                                            "cpf",
+                                            "nome"
 
-
-
+                                            );
 
             ViewBag.AllDispositivos = DispositivoSelectList;
-            ViewBag.AllClientes = listaNomes;
-            //DispositivoIds[0].Proprietario.ToString()
+            ViewBag.AllClientes = ClienteSelectList;
+            
 
             if (id.HasValue)
             {

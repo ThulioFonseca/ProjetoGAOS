@@ -12,8 +12,6 @@ namespace ProjetoGAOS.Controllers
 
     public class ClienteController : Controller
     {
-
-
         private readonly AulaContext _context;
 
         public ClienteController(AulaContext context)
@@ -21,12 +19,10 @@ namespace ProjetoGAOS.Controllers
 
             this._context = context;
         }
-
         public async Task<IActionResult> ListaClientes()
         {
-            
-            return View(await _context.Clientes.OrderBy(x=>x.Nome).AsNoTracking().ToListAsync());
 
+            return View(await _context.Clientes.OrderBy(x => x.Nome).AsNoTracking().ToListAsync());
 
         }
 
