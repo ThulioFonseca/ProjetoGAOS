@@ -12,9 +12,9 @@ namespace ProjetoGAOS.Controllers
 
     public class ClienteController : Controller
     {
-        private readonly AulaContext _context;
+        private readonly aulaContext _context;
 
-        public ClienteController(AulaContext context)
+        public ClienteController(aulaContext context)
         {
 
             this._context = context;

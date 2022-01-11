@@ -6,13 +6,13 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace ProjetoGAOS.Models
 {
-    public partial class AulaContext : DbContext
+    public partial class aulaContext : DbContext
     {
-        public AulaContext()
+        public aulaContext()
         {
         }
 
-        public AulaContext(DbContextOptions<AulaContext> options)
+        public aulaContext(DbContextOptions<aulaContext> options)
             : base(options)
         {
         }
@@ -26,6 +26,7 @@ namespace ProjetoGAOS.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
                 optionsBuilder.UseNpgsql("Host=200.18.128.54;Database=aula;Username=aula;Password=aula");
             }
         }
@@ -107,21 +108,21 @@ namespace ProjetoGAOS.Models
                     .HasMaxLength(50)
                     .HasColumnName("identificador");
 
+                entity.Property(e => e.Motivo).HasColumnName("motivo");
+
                 entity.Property(e => e.Orcamento)
                     .HasMaxLength(50)
-                    .HasColumnName("orcamento");
+                    .HasColumnName("orcamento")
+                    .HasDefaultValueSql("'00,00'::character varying");
 
                 entity.Property(e => e.Status)
                     .HasMaxLength(50)
-                    .HasColumnName("status");
-                
+                    .HasColumnName("status")
+                    .HasDefaultValueSql("'Aberta'::character varying");
+
                 entity.Property(e => e.Tipo)
                     .HasMaxLength(50)
                     .HasColumnName("tipo");
-
-                entity.Property(e => e.Motivo)
-                    //.HasMaxLength(50)
-                    .HasColumnName("motivo");
 
                 entity.HasOne(d => d.ClienteNavigation)
                     .WithMany(p => p.OrdemDeServicos)

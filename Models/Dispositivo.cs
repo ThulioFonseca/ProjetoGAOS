@@ -11,7 +11,6 @@ namespace ProjetoGAOS.Models
         {
             OrdemDeServicos = new HashSet<OrdemDeServico>();
         }
-        
 
         public string Fabricante { get; set; }
         public string Modelo { get; set; }

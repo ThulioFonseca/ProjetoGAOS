@@ -17,9 +17,9 @@ namespace ProjetoGAOS.Controllers
     {
 
 
-        private readonly AulaContext _context;
+        private readonly aulaContext _context;
 
-        public OrdensController(AulaContext context)
+        public OrdensController(aulaContext context)
         {
 
             this._context = context;

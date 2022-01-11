@@ -30,19 +30,12 @@
             <div class="col-6">
                 
                 <label for="txtMotivo">Motivo da Manutenção:</label><br>
-               
-                    
-                @{
-                     <textarea class="form-control" name= "txtMotivo" id="txtMotivo" rows="4" runat="server"> @Model.Identificador</textarea> 
-
-                        
-
-                }
-               
+                <textarea class="form-control" asp-for="@Model.Motivo" name= "Motivo" id="Motivo" rows="4" ></textarea>
+                           
                 <div class="rw-3">
                     <label for="txtData">Data de entrada:</label><br>
                     <input type="date" class="form-control " data-date-format="dd-mm-yyyy" name="Data" id="txtData" value="@Model.Data">
-                </div>
+            </div>
             </div>
             <div class="col-6">
 

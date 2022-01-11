@@ -26,7 +26,7 @@ namespace ProjetoGAOS
                public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
-            services.AddDbContext<AulaContext>(options =>
+            services.AddDbContext<aulaContext>(options =>
             options.UseNpgsql(Configuration.GetConnectionString("DBconnetionsString")));
         }
 
