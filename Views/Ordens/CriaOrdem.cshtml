@@ -26,10 +26,11 @@
                        <div class="row-1 ">
                             <label for="txtIdentificador">Dispoisitivo:</label><br>
                             <select class="form-control" asp-for="@Model.Identificador" asp-items="@ViewBag.Dispositivo" readonly></select>
+                            
                         </div>
                         <div class="mt-2">
                             <label for="txtModelo">Cliente:</label><br>
-                            <select class="form-control" asp-for="@Model.Cliente" asp-items="@ViewBag.AllClientes" readonly></select>
+                            <select class="form-control" asp-for="@Model.Cliente" asp-items="@ViewBag.Cliente" readonly></select>
                         </div>
                         <div class="col-6">
                 
@@ -82,9 +83,10 @@
                         <div class="row-1 ">
                             <label for="txtIdentificador">Dispoisitivo:</label><br>
                             <select class="form-control" asp-for="@Model.Identificador" asp-items="@ViewBag.AllDispositivos"></select>
+                             <a class="btn btn-outline-danger btn-lg" asp-action="BuscaDados" type="reset">Cancelar</a>
                         </div>
                                     <div class="mt-2">
-                            <label for="txtModelo">Cliente:</label><br>
+                            <label for="txtModelo">@ViewBag.Teste</label><br>
                             <select class="form-control" asp-for="@Model.Cliente" asp-items="@ViewBag.AllClientes"></select>
                         </div>
                         <div class="col-6">

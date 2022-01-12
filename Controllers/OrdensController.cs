@@ -33,11 +33,20 @@ namespace ProjetoGAOS.Controllers
 
         }
 
+        public Task<EmptyResult> BuscaDados(){
+
+            ViewBag.Teste = "Funciona!!!";
+            return null;
+
+        }
+
 
         private void Querys (int? id){
 
-            /*
-             var DispositivoSelectList = new SelectList(from Dispositivo in _context.Dispositivos.OrderBy(x=>x.Fabricante) join Cliente in _context.Clientes on Dispositivo.Proprietario equals Cliente.Cpf 
+            if(id == null){
+
+
+                var ModeloSelectList = new SelectList(from Dispositivo in _context.Dispositivos.OrderBy(x=>x.Fabricante) join Cliente in _context.Clientes on Dispositivo.Proprietario equals Cliente.Cpf 
  
                                         select new
                                         {   
@@ -47,9 +56,21 @@ namespace ProjetoGAOS.Controllers
                                             "id",
                                             "FabricanteModelo"
 
-                                            );*/
+                                            );
 
-            
+                ViewBag.AllDispositivos = ModeloSelectList;
+
+                
+            var AllClientes = new List<Cliente>(
+
+                                    from Cliente in _context.Clientes
+                                    select Cliente);                  
+
+                    var AllClienteSelectList = new SelectList(AllClientes, nameof(Cliente.Cpf), nameof(Cliente.Nome));
+
+            ViewBag.AllClientes = AllClienteSelectList;
+
+            }          
 
 
          var ListaDispositivo = new List<Dispositivo>(
@@ -74,7 +95,7 @@ namespace ProjetoGAOS.Controllers
 
                     var ClienteSelectList = new SelectList(ListaNome, nameof(Cliente.Cpf), nameof(Cliente.Nome));
 
-            ViewBag.AllClientes = ClienteSelectList;
+            ViewBag.Cliente = ClienteSelectList;
 
 
         }
@@ -83,11 +104,11 @@ namespace ProjetoGAOS.Controllers
         public async Task<IActionResult> CriaOrdem(int? id)
         {
                 
-            
+            Querys(id);
 
             if (id.HasValue)
             {
-                Querys(id);
+                
 
                 var ordem = await _context.OrdemDeServicos.FindAsync(id);
                 if (ordem == null)
