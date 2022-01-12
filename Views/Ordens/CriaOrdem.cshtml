@@ -17,59 +17,124 @@
 
         <form method="post" action="/Ordens/CriaOrdem" class="w-50 fs-6 row g-3">
             <input type="hidden" name="id" id="id" value="@Model.Id">
-            <div class="row-1 ">
-                <label for="txtIdentificador">Dispoisitivo:</label><br>
-                <select class="form-control" asp-for="@Model.Identificador"
-                    asp-items="@ViewBag.AllDispositivos">
-                </select>
-            </div>
-            <div class="mt-2">
-                <label for="txtModelo">Cliente:</label><br>
-                <select class="form-control" asp-for="@Model.Cliente" asp-items="@ViewBag.AllClientes"></select>
-            </div>
-            <div class="col-6">
+            
+            @{
+                    if (Context.Request.RouteValues.ContainsKey("id"))
+                    {
+                       
+                        
+                       <div class="row-1 ">
+                            <label for="txtIdentificador">Dispoisitivo:</label><br>
+                            <select class="form-control" asp-for="@Model.Identificador" asp-items="@ViewBag.Dispositivo" readonly></select>
+                        </div>
+                        <div class="mt-2">
+                            <label for="txtModelo">Cliente:</label><br>
+                            <select class="form-control" asp-for="@Model.Cliente" asp-items="@ViewBag.AllClientes" readonly></select>
+                        </div>
+                        <div class="col-6">
                 
-                <label for="txtMotivo">Motivo da Manutenção:</label><br>
-                <textarea class="form-control" asp-for="@Model.Motivo" name= "Motivo" id="Motivo" rows="4" ></textarea>
-                           
-                <div class="rw-3">
-                    <label for="txtData">Data de entrada:</label><br>
-                    <input type="date" class="form-control " data-date-format="dd-mm-yyyy" name="Data" id="txtData" value="@Model.Data">
-            </div>
-            </div>
-            <div class="col-6">
+                            <label for="txtMotivo">Motivo da Manutenção:</label><br>
+                            <textarea class="form-control" asp-for="@Model.Motivo" name= "Motivo" id="Motivo" rows="4" readonly ></textarea>
+                                    
+                            <div class="rw-3">
+                                <label for="txtData">Data de entrada:</label><br>
+                                <input type="date" class="form-control " data-date-format="dd-mm-yyyy" name="Data" id="txtData" value="@Model.Data" readonly> 
+                            </div>
+                        </div>
+                        <div class="col-6">
 
-                <label for="txtTipo" class="mb-2">Tipo:</label><br>
-                
-                <div class="rw-3">
-                    <input class="form-check-input" type="radio" name="Tipo" asp-for="@Model.Tipo" id="Tipo" value="Comum">
-                    <label class="form-check-label">Comum</label>
-                   
-                    <input class="form-check-input ms-3" type="radio" name="Tipo" asp-for="@Model.Tipo" id="Tipo" value="Garantia">
-                    <label class="form-check-label">Garantia</label>
-                </div>
-                <div class="rw-3 mt-3">
-                    
-                    <label for="txtStatus">Status:</label><br>
-                    <select class="form-control" id="txtStatus" asp-for="@Model.Status" class="form-select">
+                            <label for="txtTipo" class="mb-2">Tipo:</label><br>
+                            
+                            <div class="rw-3 ">
+                                <input class="form-check-input" type="radio" name="Tipo" asp-for="@Model.Tipo" id="Tipo" value="Comum">
+                                <label class="form-check-label">Comum</label>
+                            
+                                <input class="form-check-input ms-3" type="radio" name="Tipo" asp-for="@Model.Tipo" id="Tipo" value="Garantia">
+                                <label class="form-check-label">Garantia</label>
+                            </div>
+                            <div class="rw-3 mt-3">
+                                
+                                <label for="txtStatus">Status:</label><br>
+                                <select class="form-control" id="txtStatus" asp-for="@Model.Status" class="form-select">
 
-                        <option value="Aberta">Aberta</option>
-                        <option value="Fechada">Fechada</option>
-                        <option value="Cancelada">Cancelada</option>
+                                    <option value="Aberta">Aberta</option>
+                                    <option value="Fechada">Fechada</option>
+                                    <option value="Cancelada">Cancelada</option>
 
-                    </select>
+                                </select>
 
-                    <div class="rw-3"> 
-                    
-                        <label for="txtStatus">Orcamento:</label><br>
-                        <input class="form-control" id="txtOrcamento" asp-for="@Model.Orcamento" class="form-select">
-                    
-                    </div>
-                
-                </div>
-                
+                                <div class="rw-3"> 
+                                
+                                    <label for="txtStatus">Orcamento:</label><br>
+                                    <input class="form-control" id="txtOrcamento" asp-for="@Model.Orcamento" class="form-select">
+                                
+                                </div>
+                            
+                            </div>
+                            
 
-            </div>        
+                        </div>        
+                        
+                    }
+                    else{
+
+
+                        <div class="row-1 ">
+                            <label for="txtIdentificador">Dispoisitivo:</label><br>
+                            <select class="form-control" asp-for="@Model.Identificador" asp-items="@ViewBag.AllDispositivos"></select>
+                        </div>
+                                    <div class="mt-2">
+                            <label for="txtModelo">Cliente:</label><br>
+                            <select class="form-control" asp-for="@Model.Cliente" asp-items="@ViewBag.AllClientes"></select>
+                        </div>
+                        <div class="col-6">
+                            
+                            <label for="txtMotivo">Motivo da Manutenção:</label><br>
+                            <textarea class="form-control" asp-for="@Model.Motivo" name= "Motivo" id="Motivo" rows="4" ></textarea>
+                                    
+                            <div class="rw-3">
+                                <label for="txtData">Data de entrada:</label><br>
+                                <input type="date" class="form-control " data-date-format="dd-mm-yyyy" name="Data" id="txtData" value="@Model.Data">
+                        </div>
+                        </div>
+                        <div class="col-6">
+
+                            <label for="txtTipo" class="mb-2">Tipo:</label><br>
+                            
+                            <div class="rw-3">
+                                <input class="form-check-input" type="radio" name="Tipo" asp-for="@Model.Tipo" id="Tipo" value="Comum">
+                                <label class="form-check-label">Comum</label>
+                            
+                                <input class="form-check-input ms-3" type="radio" name="Tipo" asp-for="@Model.Tipo" id="Tipo" value="Garantia">
+                                <label class="form-check-label">Garantia</label>
+                            </div>
+                            <div class="rw-3 mt-3">
+                                
+                                <label for="txtStatus">Status:</label><br>
+                                <select class="form-control" id="txtStatus" asp-for="@Model.Status" class="form-select">
+
+                                    <option value="Aberta">Aberta</option>
+                                    <option value="Fechada">Fechada</option>
+                                    <option value="Cancelada">Cancelada</option>
+
+                                </select>
+
+                                <div class="rw-3"> 
+                                
+                                    <label for="txtStatus">Orcamento:</label><br>
+                                    <input class="form-control" id="txtOrcamento" asp-for="@Model.Orcamento" class="form-select">
+                                
+                                </div>
+                            
+                            </div>
+                            
+
+                        </div>        
+
+                    }
+
+            }
+            
 
             <div class="d-flex flex-row justify-content-center m-3 ">
                 <button class="btn btn-outline-success btn-lg me-4" type="submit">Salvar</button>

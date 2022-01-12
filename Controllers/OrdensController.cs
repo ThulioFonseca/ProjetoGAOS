@@ -17,9 +17,9 @@ namespace ProjetoGAOS.Controllers
     {
 
 
-        private readonly aulaContext _context;
+        private readonly AulaContext _context;
 
-        public OrdensController(aulaContext context)
+        public OrdensController(AulaContext context)
         {
 
             this._context = context;
@@ -33,41 +33,61 @@ namespace ProjetoGAOS.Controllers
 
         }
 
-        [HttpGet]
-        public async Task<IActionResult> CriaOrdem(int? id)
-        {
 
+        private void Querys (int? id){
 
-            var DispositivoSelectList = new SelectList(from Dispositivo in _context.Dispositivos.OrderBy(x=>x.Fabricante) join Cliente in _context.Clientes on Dispositivo.Proprietario equals Cliente.Cpf 
+            /*
+             var DispositivoSelectList = new SelectList(from Dispositivo in _context.Dispositivos.OrderBy(x=>x.Fabricante) join Cliente in _context.Clientes on Dispositivo.Proprietario equals Cliente.Cpf 
  
                                         select new
-                                        {
+                                        {   
                                             id = Dispositivo.Identificador,
                                             FabricanteModelo = Dispositivo.Fabricante + " - " + Dispositivo.Modelo + " ------- " + Cliente.Nome},                                                           
-
+                                            
                                             "id",
                                             "FabricanteModelo"
 
-                                            );
+                                            );*/
 
-             var ClienteSelectList = new SelectList(from Cliente in _context.Clientes.OrderBy(x => x.Nome).AsNoTracking().ToList()
+            
 
-                                        select new
-                                        {
-                                            cpf = Cliente.Cpf,
-                                            nome = Cliente.Nome},                                                           
 
-                                            "cpf",
-                                            "nome"
+         var ListaDispositivo = new List<Dispositivo>(
 
-                                            );
+                                    from Ordem in _context.OrdemDeServicos
+                                    where Ordem.Id == id
+                                    join Dispositivo in _context.Dispositivos on Ordem.Identificador
+                                    equals Dispositivo.Identificador
+                                    select Dispositivo);                  
 
-            ViewBag.AllDispositivos = DispositivoSelectList;
+                    var DispositivoSelectList = new SelectList(ListaDispositivo, nameof(Dispositivo.Identificador), nameof(Dispositivo.Modelo));
+
+            ViewBag.Dispositivo = DispositivoSelectList ;
+
+            var ListaNome = new List<Cliente>(
+
+                                    from Ordem in _context.OrdemDeServicos
+                                    where Ordem.Id == id
+                                    join Cliente in _context.Clientes on Ordem.Cliente
+                                    equals Cliente.Cpf
+                                    select Cliente);                  
+
+                    var ClienteSelectList = new SelectList(ListaNome, nameof(Cliente.Cpf), nameof(Cliente.Nome));
+
             ViewBag.AllClientes = ClienteSelectList;
+
+
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> CriaOrdem(int? id)
+        {
+                
             
 
             if (id.HasValue)
             {
+                Querys(id);
 
                 var ordem = await _context.OrdemDeServicos.FindAsync(id);
                 if (ordem == null)
