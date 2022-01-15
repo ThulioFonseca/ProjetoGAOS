@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 
-
 #nullable disable
 
 namespace ProjetoGAOS.Models
@@ -20,8 +19,4 @@ namespace ProjetoGAOS.Models
         public virtual Cliente ClienteNavigation { get; set; }
         public virtual Dispositivo IdentificadorNavigation { get; set; }
     }
-
-
-
-    
 }

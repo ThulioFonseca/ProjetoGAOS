@@ -26,8 +26,19 @@ namespace ProjetoGAOS.Controllers
 
         public async Task<IActionResult> ListaDispositivos()
         {
-            
-            return View(await _context.Dispositivos.OrderBy(x=>x.Fabricante).AsNoTracking().ToListAsync());
+            var listaDispositivos = await _context.Dispositivos.OrderBy(x => x.Fabricante).Include(b => b.ProprietarioNavigation).AsNoTracking().ToListAsync();
+
+            // var listaDispositivos = new List<Dispositivo>(
+
+            //                         from Dispositivo in _context.Dispositivos
+            //                         // join Cliente in _context.Clientes on Dispositivo.Proprietario
+            //                         // equals Cliente.Cpf
+            //                         select Dispositivo);     
+            // foreach (var item in listaDispositivos)
+            // {
+            //     _context.Entry(item).Reference(c => c.ProprietarioNavigation).Load();   
+            // }
+            return View(listaDispositivos);
            
         }
 

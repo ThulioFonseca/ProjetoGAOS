@@ -20,5 +20,12 @@ namespace ProjetoGAOS.Models
 
         public virtual Cliente ProprietarioNavigation { get; set; }
         public virtual ICollection<OrdemDeServico> OrdemDeServicos { get; set; }
+
+        public override string ToString()
+        {
+            return "Id: " + this.Identificador + "\nCliente: " + this.ProprietarioNavigation.Nome;
+        }
+
+
     }
 }

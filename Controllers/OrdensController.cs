@@ -33,11 +33,15 @@ namespace ProjetoGAOS.Controllers
 
         }
 
-        public Task<EmptyResult> BuscaDados(){
+        public ActionResult BuscaDados(string identifi){
+
+            var ordem = new OrdemDeServico();
+            ordem. = 
 
             ViewBag.Teste = "Funciona!!!";
-            return null;
-
+            ViewBag.Cliente = new List<Cliente>();
+            Console.Out.WriteLine("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+            return View("CriaOrdem");
         }
 
 

@@ -24,8 +24,8 @@
                        
                         
                        <div class="row-1 ">
-                            <label for="txtIdentificador">Dispoisitivo:</label><br>
-                            <select class="form-control" asp-for="@Model.Identificador" asp-items="@ViewBag.Dispositivo" readonly></select>
+                            <label for="txtIdentificador">Dispositivo:</label><br>
+                            <select class="form-control" asp-for="@Model" asp-items="@ViewBag.Dispositivo" readonly></select>
                             
                         </div>
                         <div class="mt-2">
@@ -82,7 +82,7 @@
 
                         <div class="row-1 ">
                             <label for="txtIdentificador">Dispoisitivo:</label><br>
-                            <select class="form-control" asp-for="@Model.Identificador" asp-items="@ViewBag.AllDispositivos"></select>
+                            <select OnSelectedIndexChanged="BuscaDados" runat="server" AutoPostBack="True" class="form-control" asp-for="@Model.Identificador" asp-items="@ViewBag.AllDispositivos"></select>
                              <a class="btn btn-outline-danger btn-lg" asp-action="BuscaDados" type="reset">Cancelar</a>
                         </div>
                                     <div class="mt-2">
